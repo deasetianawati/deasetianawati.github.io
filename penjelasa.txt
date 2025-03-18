@@ -1,0 +1,83 @@
+Cara Membuat Portofolio Menggunakan Bootstrap Versi 5.3
+
+Ini adalah langkah-langkah yang saya ikuti dalam membuat portofolio menggunakan Bootstrap 5.3. Saya buat sedetail mungkin agar mudah diikuti.
+
+
+1. Navbar (Bagian Pertama)
+
+Pertama, saya memulai dengan menulis template dasar Bootstrap. Caranya buka di bagian Getting Started, lalu cari template di "Starter Template." Simpan template ini, dan jangan lupa untuk mengubah beberapa bagian sesuai kebutuhan.
+
+    Saya ubah <html lang="ar" dir="rtl"> menjadi <html lang="id"> agar sesuai dengan bahasa yang digunakan (bahasa Indonesia).
+    Kemudian, saya ubah navbar menjadi gelap dengan mengganti kode berikut:
+    Dari <nav class="navbar navbar-expand-lg navbar-dark bg-info"> menjadi <nav class="navbar navbar-expand-lg navbar-dark bg-dark">. Kalau kamu ingin menggunakan navbar terang, cukup ganti navbar-dark dengan navbar-light, dan sesuaikan warna latar belakang sesuai keinginan.
+
+Saya juga menambahkan text-center, text-start, dan text-end untuk mengatur alignment teks. Untuk bahasa seperti Arab yang dibaca dari kanan ke kiri, ini sangat penting.
+2. Warna
+
+Untuk warna, saya menggunakan utility class Bootstrap seperti bg-info, text-danger, dan lainnya. Kalau tidak suka warna default dari Bootstrap, kita bisa buat style background sendiri di CSS.
+3. Jumbotron (Bagian Kedua)
+
+Bootstrap versi 5 tidak menyediakan jumbotron lagi, jadi saya contek dari versi 4. Tapi, tampilannya akan rusak kalau langsung digunakan, jadi saya buat style CSS manual.
+
+Lalu, saya tambahkan gambar profil di jumbotron. Saya buat folder bernama image, lalu masukkan gambar ke dalamnya, seperti ini:
+
+<img src="image/profile.png" alt="Nama Kamu" width="200px">
+
+Untuk membuat gambar jadi bulat, saya tambahkan class rounded-circle:
+
+<img src="image/profile.png" alt="Nama Kamu" width="200px" class="rounded-circle">
+
+Selanjutnya, saya tambahkan garis bergelombang menggunakan website https://getwaves.io/. Pilih warnanya sesuai keinginan, saya pilih warna putih dan simpan di bawah section jumbotron.
+4. Section About
+
+Untuk bagian ini, saya menggunakan layout Bootstrap. Buat div dengan kelas container, lalu buat grid di dalamnya menggunakan row dan col. Kolom dalam Bootstrap harus selalu berjumlah maksimal 12. Jadi kalau saya mau dua kolom, ukurannya saya atur menjadi 6 dan 6, atau bisa 8 dan 4 untuk proporsi berbeda.
+
+Kalau ingin kolomnya berada di tengah, gunakan class justify-content-center. Kemudian, sesuaikan ukuran font menggunakan utility text.
+
+Margin juga bisa dengan mudah ditambahkan menggunakan utility spacing. Cek dokumentasinya, nilainya 0 sampai 5.
+5. Section Project
+
+Untuk bagian project, saya mulai dengan membuat div container yang di dalamnya ada row dan col. Di dalam col, saya pakai komponen card dari Bootstrap. Cari card yang hanya berisi gambar dan tulisan, lalu copy kodenya.
+
+Untuk gambar, saya download dari https://unsplash.com dan simpan di folder proyek.
+
+Saya juga atur supaya layout tetap responsif di perangkat mobile. Caranya, saya gunakan class col-md-4, jadi ketika layarnya lebih dari 768px, tampilannya tiga kolom, tapi kalau lebih kecil dari itu, jadi satu kolom.
+6. Section Contact
+
+Sebelum section project, saya tambahkan lagi gelombang putih. Di sini, saya buat form sederhana untuk nama, email, dan pesan (textarea). Gunakan komponen form dari Bootstrap, copy input text dan textarea dari dokumentasi, lalu edit sesuai kebutuhan.
+7. Footer
+
+Untuk bagian footer, saya sesuaikan dengan warna navbar agar serasi. Saya tambahkan juga gelombang di bagian atas footer, dan untuk menambah sedikit detail keren, saya pakai icon "love" dari Bootstrap Icons.
+
+Saya menggunakan CDN untuk memasukkan ikon-ikon ini agar mudah digunakan. Ganti tulisan "love" dengan ikon sesuai selera. Kalau mau ganti warna jadi merah, cukup tambahkan class text-danger.
+
+8.Perbaikan Navigasi (Loncat ke Bagian Tertentu dan Navbar Tetap Nempel Saat Scroll)
+
+Langkah 1: Menambahkan fixed-top agar Navbar Tetap Nempel
+Untuk membuat navigasi tetap di atas saat halaman di-scroll, kita harus menambahkan class fixed-top ke elemen navbar. Berikut adalah contoh kodenya:
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm fixed-top">
+
+Tambahkan juga class shadow-sm untuk memberikan sedikit bayangan pada navbar agar terlihat lebih elegan.
+
+Langkah 2: Menyesuaikan Padding pada Jumbotron
+Karena navbar sekarang nempel di atas (fixed), bagian konten seperti jumbotron akan tertutup oleh navbar. Untuk mengatasi ini, kita perlu menambahkan padding di bagian atas jumbotron agar tidak tertutup. Gunakan kode berikut di CSS:
+
+.jumbotron {
+    padding-top: 6rem; /* Menambahkan jarak di atas agar konten tidak tertutup navbar */
+    background-color: #e2edff;
+}
+
+Langkah 3: Membuat Navigasi yang Mengarah ke Bagian Tertentu
+Agar navigasi bisa melompat langsung ke bagian yang diinginkan, kita perlu menggunakan id pada elemen HTML yang menjadi tujuan, dan kita buat link di navbar yang mengarah ke id tersebut.
+
+Misalnya, kita ingin link "About" di navbar mengarah ke bagian "About". Caranya adalah:
+
+    Beri id="about" pada bagian "About".
+    Buat link di navbar yang mengarah ke #about.
+
+    tapi masih ada kekurangan karena navbarnya fixed kita kasih padding top untuk semua sectionya biar gampang langusng di cssnya biar langsung kena semua 
+Tips Tambahan:
+
+    Untuk memudahkan copy-paste di Visual Studio Code, saya pakai shortcut Alt + Shift + Panah Bawah atau Alt + Shift + Panah Atas.
+    Kalau gambar terlalu besar, saya rekomendasikan menggunakan https://squoosh.app/ untuk kompres gambar biar lebih ringan saat ditampilkan di website.
