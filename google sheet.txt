@@ -1,0 +1,194 @@
+Cara Menerima Pesan dari Pengunjung Website Menggunakan Google Sheets
+
+Ada beberapa cara untuk menerima pesan dari pengunjung website. Salah satu yang umum adalah menggunakan backend programming seperti PHP yang terhubung ke database. Namun, masalahnya, aplikasi seperti ini tidak bisa disimpan di GitHub Pages karena GitHub hanya mendukung website statis.
+
+Sebagai alternatif, kita bisa menggunakan layanan dari internet yang memungkinkan untuk menerima input dari form yang kita buat. Sayangnya, kebanyakan layanan ini berbayar. Tapi, kita bisa menggunakan cara gratis dan mudah, yaitu dengan Google Sheets, JavaScript, dan Google Apps Script. Dengan metode ini, kita bisa menerima input dari form yang kita buat di website, dan datanya akan tersimpan di Google Sheets.
+
+1. Langkah-Langkah Membuat Form yang Terkoneksi ke Google Sheets
+
+    Buat Form HTML yang Terhubung ke Google Sheets
+
+    Kita akan menggunakan repository GitHub ini sebagai referensi:
+    https://github.com/jamiewilson/form-to-google-sheets
+
+
+   2. Kita buat form HTML yang bisa menyimpan data ke dalam Google Sheets menggunakan JavaScript dan Google Apps Script. Langkah pertama, buka Google Drive dan buat sebuah spreadsheet baru dengan template kosong (blank template). Beri nama spreadsheet sesuai kebutuhan. Di baris pertama, buat header seperti ini:
+        Timestamp (untuk tahu kapan pesan dikirim)
+        Nama
+        Email
+        Pesan
+3. Buat Google Apps Script
+
+    Setelah spreadsheet siap, sekarang kita buat Google Apps Script yang akan menerima data dari form. Caranya:
+        Masuk ke Google Sheets, lalu klik menu "Extensions" → "Apps Script".
+        Di dalam editor tersebut, paste kode dari file form-script-commented.js yang ada di repository GitHub tadi.
+        Beri nama aplikasi misalnya "Submit Form to Google Sheets".
+        Jika nama sheet-nya diubah dari Sheet1, pastikan mengganti nama tersebut di kodenya.
+
+   4. Jalankan Fungsi Setup
+
+    Di Google Apps Script, pilih fungsi initialSetup, lalu klik "Run". Saat pertama kali dijalankan, Google akan meminta izin akses. Ikuti langkah-langkah untuk memberikan izin:
+        Pilih akun Google yang ingin digunakan.
+        Klik "Advanced" → "Buka Project Tak Berjudul (tidak aman)" → "Allow".
+
+5.    Buat Trigger
+
+    Trigger digunakan agar ketika pengunjung mengklik tombol "Kirim", datanya otomatis terkirim ke Google Sheets. Caranya:
+        Di Google Apps Script, klik ikon jam (untuk pengaturan trigger).
+        Klik "Add Trigger", lalu pilih fungsi doPost, kemudian pilih event "On form submit".
+        Untuk notifikasi, bisa diatur sesuai keinginan, misalnya "Notify me immediately" agar mendapat pemberitahuan jika ada error.
+
+   6.  Publish Sebagai Web App
+
+    Sekarang kita publish proyek ini sebagai web app. Caranya:
+        Klik "Deploy" → "New Deployment" → Pilih tipe "Web App".
+        Isi deskripsi (opsional), lalu di bagian "Who has access", pilih "Anyone".
+        Klik "Deploy", dan salin URL yang diberikan.
+
+    6.Hubungkan Web App dengan Form HTML
+
+    Setelah mendapatkan URL web app, kita bisa hubungkan form HTML kita dengan Google Sheets:
+        Di dalam file HTML, tambahkan skrip di bagian bawah sebelum tag </body>. Pastikan URL yang digunakan adalah URL dari web app yang sudah kita buat tadi.
+        Sesuaikan nama form di JavaScript dengan nama form di HTML, misalnya name="Dea-Contact-Form".
+        Jangan lupa menambahkan atribut name pada setiap input di form, seperti name="nama", name="email", dan name="pesan".
+
+    Uji Form
+
+    Terakhir, jalankan website lokal kita, coba isi form, dan klik "Kirim". Jika berhasil, buka Google Sheets, data yang diinputkan harusnya sudah muncul di sana. Jika ada pesan sukses di konsol browser, berarti form sudah berfungsi dengan baik.
+
+
+
+
+8. filtur nya udah jalan tapi masih ada kurang bagus 
+
+1. pengunjung gatau pesan nya udah terkirim atau belum (kan ga semua pengunjung tau consollog dan gaperlu tau ),pengunjungnya taunya ketika ada feedback yang kita kasih 
+
+2. tulisaya masih ada harusnya ilang kalo kita reset
+
+ ini udah bagus sebenennya ga kita tulisin validasi , ya paling cmn tipe email misalnya harus ada @nya 
+
+
+9. Ada beberapa yang  akan kita perbaiki
+1. pada saat  usernya klik kirim saya mau kaya tombolnya kaya  ada loading dulu,udah beres loadingnya ilang balik lagi ke jadi tulisan kirim, tulisan semuanya hilang , lalu kita kasih pesan (pesan sudah berhasil dikirimkan )
+
+gimana caranya ?
+
+kita buka boostrab 5 
+
+1. cari button yang ada loaadingnya (namanya spinners), nah ada loaading yang didalam button,copy simpan dibawah tombol yg kita punya  , nah tombol ada 2 ada yang biasa ada yang loading
+
+
+A.)kita kasih nama supaya ga binnggung di kedua tombol dibagan button type :
+1.untuk tombol biasa kassih nama kirim
+
+class="btn btn-primary btn-kirim"
+
+
+2. untuk tombol loading kasih nama loading
+class="btn btn-primary btn-loading"
+
+
+inggat kita kasih namanya di class jadi gausah kasih name  lagi
+
+
+B).kita akan coba hilangkan tombol yang ga kita perluin ,kita mau hilangakan loadingnya kasih class ini bisa pakai css atau mau pake boostrab itu pake d-none (nanti dia akan hilang) 
+
+satu lagi alert(pesan) cari di boostrab cari yang ada tombol closeya (dismising) simpan diatas form (dibawah juga boleh) warnanya hijau success(warna lain boleh), pesanya ganti aja sesuaikan keingginan
+
+nah kita kasih di class alertnya: d-none (defaultnya ilang ), jadi awalnya ga ada kalo berhasil maka akan ada.
+
+
+C).kita mainkan java script
+
+ini topiknya ada di javascript dom, memanipulasi element element yang ada didalam document kita caranya gimana?
+
+1. kan pertama kita tangkap dulu formnya Dea-Contant-Form
+
+eventlistener jadi ketika form disubmit apa yang dilakukan,jangan lakukan fungsi default(mengirimkan secara methodnya get nah jangan lakukan itu) tapi lakukan sebuah fecth mengirimkan data ke  url ,methodnya apa ,isinya apa ini udah ngambil dari isi form
+jadi semua yanag ada di form kalian pesan ,nama email semua dikirim kesini , lalu di console nya tuliskan pesan succes , kalo gagal tuliskan pesan error
+
+
+
+nah nanti kita mau tamabahakan kalo berhasil jangan cuman tulisin success, kalo berhasil apa yang akan kita lakukan 
+
+
+
+2. kita butuh tangkap ketiga element yang kita punya 
+
+1. const btnKirim =document.querySelector('.btn-kirim');// java script tolong cariin ada ga element yang nama clasnya btn-kirim  
+
+(di java script gaboleh tulis btn-kirim karena dianggap pengurangan  dan bisanya syaa tulis huruf pertama dikata kedua huruf besar)
+
+
+2.cost btnLoading =document.querySelector('.btn-loading');
+
+
+untuk alert gaperlu kita gabikin class baru karena ga ada lagi element yang namanya alert kalo kalian mau yakin bikin aja class sendiri my-alert
+
+3 .cost btnAlert =document.querySelector('.my-alert');
+
+
+
+
+B. kita siap manipulasi hilang dan munculnya 
+
+tulis sebelum fetch
+
+kita tau button loding dan alert hilang , nah kita inggin pada saat tombol submit di klik tombol kirimnya hilang berubah jadi tombol loading
+
+// nah kita akan tambahkan sesuatu ketika tombol submit di klik
+
+
+btnLoading.classList.toggle( d-none);// artinya java script tolong cariin saya element 
+
+yang namanya btn-loading nah kalo udah ketemu liat didalam daftar classnya ada ga class yang namanya d-none kalo ada ilangin kalo ga ada tambahin itulah gunaya toggle
+
+
+
+//selama belum succes tampilkan tombol loading hilangkan tombol kirim
+
+btnKirim.classList.toggle('. d-none');// tadinya d-none nya  ga ada ditambahin
+
+nah ini terjadi ketika formnya kita submit , nah kita coba kirim datanya dia malah jadi loaading nah ketika success dia tetep loading sama kita belum dibalikin lagijadi kirim tapi datanya udah ada jadi tombol kirim udah ilang ,tombol loading udah muncul.
+
+caranya kita pake toogle (memanipulasi class)
+
+
+
+C).kita balikin lagi kalo berhasil
+
+masuk ke .then tambahin{} kalo kita lakuin banyak hal ,kalo cuman sebaris ekspresinya aman makanaya ga pake {}
+
+
+//tampilkan tombol kirim ,hilangkan tombol loading
+
+.then(response => {
+
+btnLoading.classList.toggle( '.d-none');
+btnLoading.classList.toggle( '.d-none');
+
+// tampilkan allert
+
+myAlert.classList.toggle('d-none');
+
+
+//reset(hilangin semua isinya )
+
+form.reset();
+
+
+console.log('Success!', response)})
+
+
+saaya yakin ada cara yag lebih efektif cmn ini cara yang biasa dipake sandika galih
+
+
+
+
+terkhir kita push 
+
+git add.
+git commit -m'menambahkan fitur kirim contant form'
+git push
+
+kita liat di github nah commit kita nambah

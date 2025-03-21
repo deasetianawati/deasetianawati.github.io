@@ -1,0 +1,102 @@
+1. Langkah Mudah Push  ke GitHub
+
+    Buka proyek di Git Bash:
+
+cd /c/Teknik Informatika S1/belajar ngoding/portofolio-Boostrab 5.3
+
+Setel nama dan email Git (hanya perlu sekali di awal):
+
+git config --global user.name "deasetianawati"
+git config --global user.email "deasetianawati78@gmail.com"
+
+Buat repository Git (hanya sekali jika belum dibuat):
+
+git init
+
+Cek file yang berubah:
+
+git status
+
+Tambahkan file yang berubah:
+
+git add .
+
+Simpan perubahan (commit):
+
+git commit -m "Pesan commit"
+
+Hubungkan ke GitHub (hanya sekali di awal):
+
+git remote add origin https://github.com/deasetianawati/deasetianawati.github.io.git
+
+Ambil perubahan terbaru dari GitHub (pull):
+
+git pull origin main --rebase
+
+Kirim (push) perubahan ke GitHub:
+
+    git push -u origin main
+
+Tips:
+
+    Selalu lakukan git pull sebelum git push untuk menghindari konflik.
+    Gunakan git status untuk melihat file yang berubah sebelum di-commit.
+
+
+
+2. Cara Menghapus File di GitHub
+
+    Menghapus isi file:
+        Klik file yang ingin dihapus.
+        Pilih "Edit", hapus semua isinya.
+        Klik "Commit changes", beri pesan misalnya "Delete".
+        Klik "Commit changes".
+
+    Hapus file sepenuhnya:
+        Klik titik tiga di samping file.
+        Pilih "Delete file".
+        Klik "Commit changes".
+
+
+3.Buka Kodingan Lewat VS Code
+
+    Buka proyek di VS Code lewat terminal Git Bash:
+
+    code .
+
+    Misalnya ingin mengubah tombol menjadi hijau, ubah di VS Code dan simpan.
+
+    Kenapa perubahan belum terlihat di GitHub?
+        Karena perubahan baru dilakukan secara lokal (di komputer kita).
+        Untuk meng-update di GitHub, ikuti langkah berikut:
+
+Langkah Meng-update Perubahan ke GitHub
+
+    Buka terminal di VS Code:
+        Klik View -> Terminal.
+        Jika terminal yang muncul bukan Git Bash, ubah dengan klik + lalu pilih Git Bash.
+
+    Lakukan commit dan push perubahan ke GitHub:
+
+    git add .
+    git commit -m "Mengubah warna tombol jadi hijau"
+    git push
+
+    Cek di GitHub:
+        Refresh halaman GitHub. Perubahan terakhir sudah ada.
+        Jika halaman belum berubah, coba tekan Ctrl + Shift + R untuk refresh.
+
+Buat Website Lain dengan Banyak Repository
+
+    GitHub Pages:
+        Hanya bisa punya satu repository utama dengan alamat deasetiana.github.io.
+        Jika membuat repository lain untuk GitHub Pages, alamatnya akan seperti ini: deasetiana.github.io/nama-repository.
+
+    Catatan:
+        GitHub Pages tidak mendukung database seperti MySQL atau PHP, sehingga website yang di-host di GitHub Pages bersifat statis.
+
+Ingin Website Lebih Fleksibel?
+
+    Gunakan web hosting seperti Niaga Hoster jika ingin lebih fleksibel dan mendukung database serta server-side scripting.
+
+Dengan langkah-langkah ini, proses push perubahan ke GitHub dan pengelolaan file menjadi lebih mudah. Jika ada pertanyaan, tinggal tanya saja!
